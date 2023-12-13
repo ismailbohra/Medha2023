@@ -1,24 +1,59 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import { useEffect } from 'react';
+import Sidebar from './components/Sidebar';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Orders from './components/Orders/Orders';
+import Quiz from './components/Quiz/Quiz'
+import MainDash from './components/MainDash/MainDash';
+import Landing from './components/Landing/Landing';
+import Login from './components/Login/Login';
 
 function App() {
+  useEffect(() => {
+    if (window.location.pathname === '/') {
+      document.querySelector('.sBar').style.display = 'none';
+    }
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+  
+    <>
+
+
+      <BrowserRouter>
+        <div className="App">
+          <div className="AppGlass">
+
+          <div className="sBar">
+
+            <Sidebar />
+          </div>
+
+
+            <div className="centerbody">
+              <Routes>
+                
+         
+                <Route path='/' element={<Landing />}></Route>
+                <Route path='/dashboard' element={<MainDash />}></Route>
+                <Route path='/orders' element={<Orders />} />
+                <Route path='/quiz' element={<Quiz />} />
+                {/* <Route path='/login' element={<Login />} /> */}
+
+
+
+
+              </Routes>
+            </div>
+            
+
+           
+          </div>
+        </div>
+
+
+      </BrowserRouter>
+    </>
   );
 }
 
